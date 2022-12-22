@@ -39,5 +39,5 @@ app.get("/", (req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log("connected to port successfully " + port);
+  console.log(`connected to port successfully http://localhost:${port}/ `);
 });
