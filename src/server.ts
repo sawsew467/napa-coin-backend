@@ -2,8 +2,8 @@
 require('dotenv').config();
 
 //connect BD
-import { connectDB } from "./config/db";
-connectDB();
+const {connectDB} = require('./config/db');
+connectDB()
 
 const authRoute = require("./routes/authRoute")
 
