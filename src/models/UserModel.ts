@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+import { Request, Response, NextFunction } from "express";
 
 const userSchema = mongoose.Schema(
   {
@@ -22,5 +24,10 @@ const userSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
+
+userSchema.pre("save", function (next: NextFunction) {
+  //hash password
+  next();
+});
 
 export const User = mongoose.model("User", userSchema);

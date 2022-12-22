@@ -1,3 +1,4 @@
+import {ErrorType} from "./middlewares/errorHandler"
 //dotenv
 require('dotenv').config();
 
@@ -6,6 +7,8 @@ const {connectDB} = require('./config/db');
 connectDB()
 
 const authRoute = require("./routes/authRoute")
+const { errorHandler } = require("./middlewares/errorHandler");
+
 
 import express from "express";
 import cors from "cors";
@@ -20,6 +23,13 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1/auth", authRoute)
+
+app.all("*", (req, res, next) => {
+  const err: ErrorType = new Error("Unhandled Route");
+  err.statusCode = 404;
+  next(err);
+});
+app.use("/api/v1/auth", errorHandler)
 
 app.get("/", (req, res, next) => {
   res.status(200).json({
