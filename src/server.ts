@@ -47,3 +47,5 @@ socketServer.onConnection();
 server.listen(port, () => {
     console.log(`connected to port successfully http://localhost:${port}/ `);
 });
+
+export default app;
