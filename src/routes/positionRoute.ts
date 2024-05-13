@@ -1,7 +1,10 @@
 import express from 'express';
-import { createPosition } from '../controllers/positionController';
+import { createPosition, deletePosition, editPosition, getAllPositions } from '../controllers/positionController';
 
 const Router = express.Router();
 Router.route('/').post(createPosition);
+Router.route('/').get(getAllPositions);
+Router.route('/:id').patch(editPosition);
+Router.route('/:id').delete(deletePosition);
 
 module.exports = Router;
