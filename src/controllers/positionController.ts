@@ -36,6 +36,21 @@ export const getAllPositions = async (req: Request, res: Response, next: NextFun
     }
 };
 
+export const getPositionById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { id } = req.params;
+
+        const position = await Position.findById(id);
+
+        res.status(200).json({
+            status: 'success',
+            data: position,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
 export const editPosition = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params;

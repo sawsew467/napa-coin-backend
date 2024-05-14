@@ -36,6 +36,21 @@ export const getAllDepartments = async (req: Request, res: Response, next: NextF
     }
 };
 
+export const getDepartmentById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { id } = req.params;
+
+        const department = await Department.findById(id);
+
+        res.status(200).json({
+            status: 'success',
+            data: department,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
 export const editDepartment = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params;

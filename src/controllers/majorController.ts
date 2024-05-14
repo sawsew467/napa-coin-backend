@@ -36,6 +36,21 @@ export const getAllMajors = async (req: Request, res: Response, next: NextFuncti
     }
 };
 
+export const getMajorById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { id } = req.params;
+
+        const major = await Major.findById(id);
+
+        res.status(200).json({
+            status: 'success',
+            data: major,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
 export const editMajor = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params;

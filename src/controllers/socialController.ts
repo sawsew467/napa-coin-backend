@@ -36,6 +36,21 @@ export const getAllSocials = async (req: Request, res: Response, next: NextFunct
     }
 };
 
+export const getSocialById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { id } = req.params;
+
+        const social = await Social.findById(id);
+
+        res.status(200).json({
+            status: 'success',
+            data: social,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
 export const editSocial = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params;
