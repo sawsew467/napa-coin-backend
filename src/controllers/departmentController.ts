@@ -24,8 +24,6 @@ export const createDepartment = async (req: Request, res: Response, next: NextFu
 export const getAllDepartments = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const departments = await Department.find({});
-        console.log(departments);
-
         res.status(200).json({
             status: 'success',
             data: departments,

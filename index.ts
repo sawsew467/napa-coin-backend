@@ -45,7 +45,6 @@ app.use('/api/v1/auth', errorHandler);
 
 import { socketServer } from './src/socket';
 import swaggerDocs from './src/Utils/swagger';
-import { verifyToken } from './src/middlewares/veryfyToken';
 socketServer.init(server);
 socketServer.onConnection();
 server.listen(port, () => {
