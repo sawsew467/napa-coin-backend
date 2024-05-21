@@ -48,7 +48,17 @@ app.use('/api/v1/image-activity', imageActivityRoute);
 //     next(err);
 // });
 
-app.use('/api/v1/auth', errorHandler);
+app.use((error: any, req: any, res: any, next: any) => {
+    error.statusCode = error.statusCode || 500; // Changed to 500 for a more appropriate default error code
+    error.status = error.status || 'error';
+
+    res.status(error.statusCode).json({
+        status: error.status,
+        message: error.message,
+    });
+});
+
+// app.use('/api/v1/auth', errorHandler);
 
 import { socketServer } from './src/socket';
 import swaggerDocs from './src/Utils/swagger';
